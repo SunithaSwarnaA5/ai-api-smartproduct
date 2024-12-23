@@ -2,54 +2,99 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, intial-scale=1.0">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Smart Chair</title>
         <link href="style.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Chart.js library -->
     </head>
-<body style="background-color:rgb(188, 248, 26);">
+<body style="background-color:rgb(40, 232, 219);">
     <nav>
         <ul class="no-dots">
             <li>
                 <center><a href="activity99.html">smart product expiration date scanner</a></center>
             </li>
         </ul>
-
     </nav>
     <main>
         <div class="main_card">
-        <div class="card1" >
-            <h3>Live Data</h3>
-            <p>DHT 11:<span> Temperature</span></p>
-            <p>DHT 11:<span>Humidity</span></p>
-            <p>GAS SENSOR:<span>Harm full </span></p>
-            <p>buzzer:<span>alert sound</span></p>
-            <script></script>
+            <div class="card1">
+                <h3>Live Data</h3>
+                <p>DHT 11: <span>Temperature</span></p>
+                <p>DHT 11: <span>Humidity</span></p>
+                <p>GAS SENSOR: <span>Harmful</span></p>
+                <p>Buzzer: <span>alert sound</span></p>
+            </div>
+            <div class="card2">
+                <h3>Device Control</h3>
+                <button onclick="Hack()">Button 1</button>
+                <button onclick="Hack()">Button 2</button>
+                <script>
+                    function Hack() {
+                        alert("Button clicked!");
+                    }
+                </script>
+            </div>
+            <div class="card3">
+                <h3>Alerts</h3>
+                <p>Detection of temperature</p>
+                <p>Detection of humidity</p>
+                <p>Detection of harmful gas</p>
+                <p>Alert sound</p>
+            </div>
         </div>
-        <div class="card2">
-            <h3>Device Control</h3>
-            <button onclick="Hack()"></button>
-            <button onclick="Hack()"></button>
-            <script>
-                function Hack() {
-                    alert("")
-                    alert("")
-                }
-            </script>
-        </div>
-        <div class="card3">
-            <h3>Alerts</h3>
-            <p>dectection of temperature</p>
-            <p>dectection of humidity</p>
-            <p>dectection of harmfull gas</p>
-            <p>alert sound</p>
-        </div>
-        </div>
+
         <div class="chart-container">
-            <h3>
-                <center>Live Graph</center>
-            </h3>
-            <p style="margin: 10% 45% 10% 45%;"></p>
+            <h3><center>Live Graph</center></h3>
+            <canvas id="liveGraph" width="400" height="200"></canvas> 
         </div>
-    
     </main>
-</htm>
+
+    <script>
+        var ctx = document.getElementById('liveGraph').getContext('2d');
+        var liveGraph = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['1', '2', '3', '4', '5', '6', '7'], 
+                datasets: [{
+                    label: 'Temperature (°C)',
+                    data: [22, 24, 23, 26, 27, 28, 29], 
+                    borderColor: 'rgb(255, 99, 132)', // Line color for temperature
+                    fill: false,
+                    tension: 0.1
+                }, {
+                    label: 'Humidity (%)',
+                    data: [55, 60, 57, 59, 62, 65, 67], // Sample humidity data
+                    borderColor: 'rgb(54, 162, 235)', // Line color for humidity
+                    fill: false,
+                    tension: 0.1
+                }, {
+                    label: 'Harmful Gas Level',
+                    data: [0, 1, 0, 0, 0, 1, 1], // Sample harmful gas data
+                    borderColor: 'rgb(75, 192, 192)', // Line color for harmful gas
+                    fill: false,
+                    tension: 0.1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Time (minutes)'
+                        }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Value'
+                        },
+                        min: 0
+                    }
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>
